@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "concurrently --kill-others-on-fail --prefix client,server \"npm:dev-client\" \"npm:dev-server\"",
+    "dev-client": "npm --prefix client-auth run dev",
+    "dev-server": "npm --prefix server-auth run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  },
+  "dependencies": {
+    "zod": "^4.1.8"
+  }
+}
