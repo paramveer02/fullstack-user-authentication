@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomeLayout from "./pages/HomeLayout";
 import Error from "./pages/Error";
-import SignUp from "./pages/authentication/SignUp";
 
-import { action as signupAction } from "./pages/authentication/SignUp";
-import Login from "./pages/authentication/Login";
+import SignUp, { action as signupAction } from "./pages/authentication/SignUp";
+import Login, { action as loginAction } from "./pages/authentication/Login";
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +13,8 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { path: "signup", element: <SignUp />, action: signupAction },
-      { path: "login", element: <Login /> },
+      { path: "login", element: <Login />, action: loginAction },
+      { path: "dashboard", element: <Dashboard /> },
     ],
   },
 ]);
