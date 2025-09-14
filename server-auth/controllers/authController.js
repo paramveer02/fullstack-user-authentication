@@ -5,12 +5,18 @@ import { createSendToken } from "../utils/createSendToken.js";
 import { BadRequestError } from "../errors/customErrors.js";
 
 export const signup = asyncWrapper(async function (req, res) {
-  const { name, email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   const exists = await User.findOne({ email });
   if (exists) throw new BadRequestError("Email already exists");
 
-  const user = await User.create({ name, email, password, role: "user" });
+  const user = await User.create({
+    firstName,
+    lastName,
+    email,
+    password,
+    role: "user",
+  });
   createSendToken(user, StatusCodes.CREATED, res);
 });
 
