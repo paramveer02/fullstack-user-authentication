@@ -36,9 +36,5 @@ app.use(cookieParser());
 
 app.use("/api/v1/auth", authRouter);
 
-app.get("/", (req, res) => {
-  res.status(200).json({ status: "sucess" });
-});
-
 app.use(notFound);
 app.use(errorHandler);
