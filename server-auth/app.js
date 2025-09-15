@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import notFound from "./middlewares/notFound.js";
 import errorHandler from "./middlewares/errorHandler.js";
 import { authRouter } from "./routes/authRouter.js";
+import { userRouter } from "./routes/userRouter.js";
 
 export const app = express();
 
@@ -30,11 +31,13 @@ app.use(
 
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.set("trust proxy", 1);
 
 app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/user", userRouter);
 
 app.use(notFound);
 app.use(errorHandler);
