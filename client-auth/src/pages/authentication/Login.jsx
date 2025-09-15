@@ -3,6 +3,7 @@ import FormRow from "../../components/FormRow";
 import ClipLoader from "react-spinners/ClipLoader";
 import customFetch from "../../utils/customFetch";
 import { toast } from "react-toastify";
+import { useDashboard } from "../../context/DashboardContext";
 
 export const action = async function ({ request }) {
   const formData = await request.formData();
@@ -53,12 +54,14 @@ const Login = () => {
                   name="email"
                   type="email"
                   labelText="Email address"
+                  defaultValue="param@test.com"
                   required
                 />
                 <FormRow
                   name="password"
                   type="password"
                   labelText="Password"
+                  defaultValue="Admin123!"
                   required
                 />
               </div>
@@ -90,7 +93,6 @@ const Login = () => {
                 rounded-lg bg-indigo-600 text-white font-medium
                 shadow-sm transition-colors
                 hover:bg-indigo-500
-                disabled:opacity-60 disabled:cursor-not-allowed
               "
               >
                 {isSubmitting ? (
