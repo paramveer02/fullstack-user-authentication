@@ -1,8 +1,16 @@
 @import "@fontsource-variable/dm-sans";
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
   body {
-    @apply font-sans;
+    @apply bg-slate-100 text-slate-900 dark:bg-slate-900 dark:text-slate-100 font-sans;
   }
 }
