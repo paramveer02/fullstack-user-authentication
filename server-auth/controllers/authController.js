@@ -50,3 +50,10 @@ export const logout = asyncWrapper(async function (req, res) {
   });
   res.status(StatusCodes.OK).json({ message: "User logged out!" });
 });
+
+export const me = asyncWrapper(async function (req, res) {
+  const user = await User.findOne({ _id: req.user.id });
+
+  if (!user) throw new NotFoundError("User not found!");
+  res.status(StatusCodes.OK).json({ user });
+});
