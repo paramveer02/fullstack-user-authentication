@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+
 const FormRow = ({
   type = "text",
   name,
@@ -6,6 +9,9 @@ const FormRow = ({
   onChange,
   ...rest
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const isPassword = type === "password";
+
   return (
     <div>
       <label
@@ -15,14 +21,14 @@ const FormRow = ({
         {labelText || name}
         {rest.required && <span className="ml-1 text-rose-500">*</span>}
       </label>
-
-      <input
-        id={name}
-        name={name}
-        type={type}
-        defaultValue={defaultValue}
-        onChange={onChange}
-        className="
+      <div className="relative">
+        <input
+          id={name}
+          name={name}
+          type={isPassword && showPassword ? "text" : type}
+          defaultValue={defaultValue}
+          onChange={onChange}
+          className="
           block w-full rounded-lg
           border border-slate-300
           bg-slate-50
@@ -32,8 +38,23 @@ const FormRow = ({
           focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500
           transition
         "
-        {...rest}
-      />
+          {...rest}
+        />
+
+        {isPassword && (
+          <button
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+            className="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-600"
+          >
+            {showPassword ? (
+              <AiOutlineEyeInvisible className="h-5 w-5" />
+            ) : (
+              <AiOutlineEye className="h-5 w-5" />
+            )}
+          </button>
+        )}
+      </div>
     </div>
   );
 };
