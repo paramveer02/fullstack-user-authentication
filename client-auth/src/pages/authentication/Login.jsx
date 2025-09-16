@@ -113,10 +113,7 @@ const Login = () => {
               {/* Footer link */}
               <p className="text-center text-sm text-slate-600">
                 Not registered yet?{" "}
-                <Link
-                  to="/signup"
-                  className="text-indigo-600 hover:text-indigo-500"
-                >
+                <Link to="/" className="text-indigo-600 hover:text-indigo-500">
                   Create an account
                 </Link>
               </p>
