@@ -1,4 +1,5 @@
 import { StatusCodes } from "http-status-codes";
+import multer from "multer";
 
 const errorHandler = (err, req, res, next) => {
   // default
@@ -9,6 +10,16 @@ const errorHandler = (err, req, res, next) => {
   if (err.code === 11000) {
     statusCode = StatusCodes.CONFLICT; // 409
     message = "This email is already registered.";
+  }
+
+  // Multer error handling
+  if (err.code === "LIMIT_FILE_SIZE") {
+    statusCode = StatusCodes.PAYLOAD_TOO_LARGE; // 413 or 400 if you prefer
+    message = "Image is too large. Max size is 0.5 MB.";
+  }
+  if (err instanceof multer.MulterError) {
+    statusCode = StatusCodes.BAD_REQUEST;
+    message = err.message;
   }
 
   // Mongoose validation error
