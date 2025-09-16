@@ -6,7 +6,10 @@ import notFound from "./middlewares/notFound.js";
 import errorHandler from "./middlewares/errorHandler.js";
 import { authRouter } from "./routes/authRouter.js";
 import { userRouter } from "./routes/userRouter.js";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 export const app = express();
 
 const allowedOrigins = [
@@ -35,6 +38,8 @@ app.set("trust proxy", 1);
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.use(express.static(path.resolve(__dirname, "./public")));
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
