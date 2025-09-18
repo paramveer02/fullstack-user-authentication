@@ -15,7 +15,7 @@ const uploadBuffer = (buffer) =>
   });
 
 export const updateMe = asyncWrapper(async (req, res) => {
-  const forbidden = ["email", "password", "role"];
+  const forbidden = ["password", "role"];
   for (const field of forbidden) {
     if (req.body[field] !== undefined) {
       throw new BadRequestError(`You cannot update ${field} via this route`);

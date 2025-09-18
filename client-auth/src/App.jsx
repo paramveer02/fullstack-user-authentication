@@ -7,6 +7,7 @@ import Login, { action as loginAction } from "./pages/authentication/Login";
 import DashboardLayout from "./pages/DashboardLayout";
 import { loader as dashboardLoader } from "./pages/DashboardLayout";
 import { action as dashboardAction } from "./pages/DashboardLayout";
+import { action as profileAction } from "./pages/Profile";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
 
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
         loader: dashboardLoader,
         action: dashboardAction,
         children: [
-          { path: "profile", element: <Profile /> },
+          { path: "profile", element: <Profile />, action: profileAction },
           { path: "about", element: <About /> },
         ],
       },
