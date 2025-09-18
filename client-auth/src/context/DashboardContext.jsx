@@ -31,7 +31,8 @@ export const DashboardContextProvider = ({ children }) => {
       toast.success("Logged out");
       navigate("/login", { replace: true });
     } catch (error) {
-      console.log(error);
+      // Log error for debugging but don't expose to user
+      toast.error("Error logging out. Please try again.");
     }
   };
   const value = useMemo(() => ({ user, theme, toggleTheme, logout }));
