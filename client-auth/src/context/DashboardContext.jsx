@@ -11,7 +11,7 @@ export const DashboardContextProvider = ({ children }) => {
   const user = data?.user ?? data;
 
   // theme
-  const getInitialTheme = () => localStorage.getItem("theme" || "light");
+  const getInitialTheme = () => localStorage.getItem("theme") || "light";
   const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
@@ -31,10 +31,12 @@ export const DashboardContextProvider = ({ children }) => {
       toast.success("Logged out");
       navigate("/login", { replace: true });
     } catch (error) {
-      console.log(error);
+      // Log error for debugging but don't expose to user
+      console.error("Logout error:", error);
+      toast.error("Error logging out. Please try again.");
     }
   };
-  const value = useMemo(() => ({ user, theme, toggleTheme, logout }));
+  const value = useMemo(() => ({ user, theme, toggleTheme, logout }), [user, theme, logout]);
 
   return (
     <DashboardContext.Provider value={value}>
