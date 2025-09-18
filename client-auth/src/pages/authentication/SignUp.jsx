@@ -8,7 +8,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 export const action = async function ({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  console.log(data);
 
   try {
     await customFetch.post("/auth/signup", data);
@@ -16,7 +15,6 @@ export const action = async function ({ request }) {
     toast.success("Registration Successful");
     return redirect("/login");
   } catch (err) {
-    console.log(err);
     const msg =
       err?.response?.data?.message ||
       err?.message ||

@@ -25,7 +25,9 @@ export const action = async function ({ request }) {
     await customFetch.post("/auth/logout");
     toast.success("Logged out successfully");
     return redirect("/login");
-  } catch (error) {}
+  } catch (error) {
+    // Handle logout errors gracefully
+  }
 };
 
 const DashboardLayout = () => {

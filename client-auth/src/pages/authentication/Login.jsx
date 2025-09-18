@@ -14,7 +14,6 @@ export const action = async function ({ request }) {
     toast.success("Login Successful");
     return redirect("/dashboard");
   } catch (err) {
-    console.log(err);
     const msg =
       err?.response?.data?.message ||
       err?.message ||
@@ -54,14 +53,12 @@ const Login = () => {
                   name="email"
                   type="email"
                   labelText="Email address"
-                  defaultValue="param@test.com"
                   required
                 />
                 <FormRow
                   name="password"
                   type="password"
                   labelText="Password"
-                  defaultValue="Admin123!"
                   required
                 />
               </div>
